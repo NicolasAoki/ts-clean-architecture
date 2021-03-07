@@ -1,4 +1,5 @@
 import { User } from "../../entities/User";
+import { IMailProvider } from "../../providers/IMailProvider";
 import { IUsersRepository } from "../../repositories/IUsersRepository";
 import { ICreateUserRequestDTO } from "./CreateUserDTO";
 
@@ -11,7 +12,8 @@ import { ICreateUserRequestDTO } from "./CreateUserDTO";
 export class CreateUserUseCase {
   constructor(
     // Desta forma o TS está atribuindo a classe injetada à uma propriedade interna desta classe
-    private usersRepository: IUsersRepository
+    private usersRepository: IUsersRepository,
+    private emailProvider: IMailProvider,
   ) {}
   async execute(data: ICreateUserRequestDTO) {
     /*
@@ -31,5 +33,18 @@ export class CreateUserUseCase {
     const user = new User(data);
 
     await this.usersRepository.save(user)
+
+    await this.emailProvider.sendMail({
+      to: {
+        name: data.name,
+        email: data.email,
+      },
+      from: {
+        name: 'Equipe do app',
+        email: 'app@app.com.br'
+      },
+      subject: 'Bem vindo ao App',
+      body: '<h1>Login disponivel</h1>'
+    })
   }
 }
