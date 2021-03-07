@@ -29,6 +29,7 @@ export class CreateUserUseCase {
       E sim somente que execute determinada funçao. Desta forma tabem fica fácil
       a substuicao de cada serviço sem ter que mexer na lógica desta classe.
     */
+    console.log(this.usersRepository)
     const userAlreadyExists = await this.usersRepository.findByEmail(data.email);
 
     if (userAlreadyExists) {

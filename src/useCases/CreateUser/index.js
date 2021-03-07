@@ -19,8 +19,8 @@ const mongoUserRepository = new MongoUserRepository()
   Assim retirando a dependencia da regra de negócio da implementacao
 */
 const createUserUseCase = new CreateUserUseCase(
-  mailtrapMailProvider,
   mongoUserRepository,
+  mailtrapMailProvider,
 )
 
 const createUserController = new CreateUserController(createUserUseCase)
