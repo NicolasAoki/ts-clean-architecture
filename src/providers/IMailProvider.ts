@@ -2,7 +2,7 @@ interface IAddress {
   email: string;
   name: string;
 }
-interface IMessage {
+export interface IMessage {
   to: IAddress;
   from: IAddress;
   subject: string;

@@ -11,7 +11,12 @@ import { ICreateUserRequestDTO } from "./CreateUserDTO";
 */
 export class CreateUserUseCase {
   constructor(
-    // Desta forma o TS está atribuindo a classe injetada à uma propriedade interna desta classe
+    /*
+      Desta forma o TS está atribuindo a classe injetada à uma propriedade interna desta classe
+      A implementacao do provider e repository está abstraida. Isso faz com que a classe seja
+      flexivel a mudanças de persistencia de dado e melhora sua manutenabilidade, já que o 
+      o foco da useCase esta diretamente relacionado a regra de negocio somente.
+    */
     private usersRepository: IUsersRepository,
     private emailProvider: IMailProvider,
   ) {}

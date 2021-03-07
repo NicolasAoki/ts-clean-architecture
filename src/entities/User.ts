@@ -18,6 +18,10 @@ export class User {
     Object.assign(this, props);
 
     if(!id) {
+      /*
+        uuidv4 fornece um ID internacional, pode ser utilizado para nao
+        depender da regra de negocio especifica de cada banco de dados
+       */
       this.id = uuid();
     }
   }
